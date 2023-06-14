@@ -1,0 +1,10 @@
+Steps:-   Create an EBS Volume and n=mount on EC2 Instance.
+            1) Launch 1'st Instances --> Name:- EBS-Volume-Instance
+                                         Create key name:- newkey1
+                                         By default setting allow SSH and HTTP  -->
+                                         Launch instances.
+            2) Open Elastic Block Storage  -->  Volume -->  Create new Volume. -->
+                                                                                 Volume type : General Purpose SSD
+                                                                                 Size : 10 GB 
+                                                                                 Availability zone : Same AZ of instance.
+                                                                                 Add Tags:- name: Volume-instance
