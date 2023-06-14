@@ -1,10 +1,38 @@
 Steps:-   Create an EBS Volume and n=mount on EC2 Instance.
             1) Launch 1'st Instances --> Name:- EBS-Volume-Instance
-                                         Create key name:- newkey1
+                                         Key name:- newkey1
                                          By default setting allow SSH and HTTP  -->
                                          Launch instances.
-            2) Open Elastic Block Storage  -->  Volume -->  Create new Volume. -->
-                                                                                 Volume type : General Purpose SSD
-                                                                                 Size : 10 GB 
-                                                                                 Availability zone : Same AZ of instance.
+            2) Elastic Block Storage  --> Open Volume -->  Create new Volume. -->
+                                                                                 Volume type :- General Purpose SSD
+                                                                                 Size :- 10 GB 
+                                                                                 Availability zone :- Same AZ of instance.
                                                                                  Add Tags:- name: Volume-instance
+            3) Select Volume  -->  Actions  --> Attach Volume --> 
+                                                                 Instance:- EBS-Volume-Instance (Running).            
+                                                                 Device name :- /dev/sdf
+            4) Open Instance EBS-Volume-instance and copy Public IP.
+            5) Open Mobaxterm  --> Session --> SSH -->
+                                                      Hostname:- Paste Public IP of our Instances.
+                                                      Specify username:- ec2-user
+                                                      Advanced setting:- Private key: newkey1.pem file select -->
+                                                      OK
+            6) Open Black screen of Mobaxterm app.
+            7) Commands :- 
+                           # sudo su
+                           # df -hT      
+                           # lsblk   
+                           # mkfs -t xfs /dev/xvdf 
+                                Allocate file system
+                           # file -s /dev/xvdf 
+                                 also file system is attached
+                           # mkdir /mnt/dire1
+                           # cd /mnt/dire1
+                           # mount /dev/xvdf /mnt/dire1
+                                  mounting is done
+                           # df -hT 
+                                  To check mounted path.
+                                  
+            8) Open our Instance ID --> Storage --> 
+                                                   Block device, Volume will attached to our instances.
+                                                   
